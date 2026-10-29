@@ -1,0 +1,125 @@
+name: "\U0001F50E Achado de auditoria"
+description: "Registrar um achado de auditoria ou diligência técnica, em qualquer repositório da KIOSK"
+title: "[AUDITORIA] "
+labels: ["auditoria"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > Um achado só é registrado depois de reproduzido. Inferência sem prova fica no relatório da auditoria, não vira issue.
+        >
+        > ## 🚧 Sidebar Obrigatória — Preencha ANTES de submeter
+        >
+        > | Campo | Ação |
+        > |-------|------|
+        > | **Assignees** | Quem decide a ação (dono do repositório afetado) |
+        > | **Labels** | `auditoria` + prioridade (`priority:*`); `security` se envolver segredo ou dado |
+        > | **Projects** | Vincular ao board de governança |
+        > | **Milestone** | Onda de governança em que o achado será tratado |
+        > | **Linked Issues** | Achados relacionados ou a demanda que vai corrigir |
+        >
+        > ⚠️ Nunca cole valor de segredo, token, senha, CPF ou chave de NF neste formulário. Cite `caminho:linha`.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repositório afetado
+      description: "No formato dono/nome. Um repositório por issue."
+      placeholder: "ADMIN-KIOSKBRANDS/nome-do-repositorio"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Categoria
+      options:
+        - Segredo ou dado versionado
+        - Higiene (Kill Lixo First)
+        - Governança de repositório (templates, CI, hooks, proteção de branch)
+        - Documentação desatualizada ou contraditória
+        - Arquitetura e acoplamento
+        - Conformidade com o Manifesto Workflow
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severidade
+      description: "Compare com os achados do mesmo nível: impacto igual, severidade igual."
+      options:
+        - "P0 — Crítico: expõe credencial válida, dado pessoal ou bloqueia produção"
+        - "P1 — Alto: risco real sem exposição confirmada"
+        - "P2 — Médio: higiene ou governança com impacto operacional"
+        - "P3 — Baixo: melhoria sem risco imediato"
+    validations:
+      required: true
+
+  - type: textarea
+    id: finding
+    attributes:
+      label: Achado
+      description: "O que foi encontrado, com `arquivo:linha` ou caminho. Fato observado, não hipótese."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reprodução
+      description: "Comando executado e a saída lida. Sem valores de segredo: mostre nomes, tamanhos, contagens ou hashes."
+      render: shell
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: false_positive
+    attributes:
+      label: Checagem de falso positivo
+      options:
+        - label: Li o código ou o arquivo; não estou inferindo pelo nome
+          required: true
+        - label: Procurei handler, guard ou configuração que neutralize o achado
+          required: true
+        - label: Confirmei a ordem de execução ou o uso real (deploy, build, runtime)
+          required: true
+
+  - type: textarea
+    id: skeptic
+    attributes:
+      label: Tentativa de refutação
+      description: "O que o cético tentou para derrubar o achado e por que ele sobreviveu. Se a severidade caiu, registre aqui."
+
+  - type: textarea
+    id: blast_radius
+    attributes:
+      label: Blast radius
+      description: "Quem consome, que superfície expõe, que dados fluem, o que quebra se o arquivo for removido (ex.: deploy por git pull, build na Vercel)."
+    validations:
+      required: true
+
+  - type: textarea
+    id: action
+    attributes:
+      label: Ação recomendada
+      description: "O que fazer e quem decide. Deleção ou reescrita de histórico só com GO nomeado do dono."
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Origem da auditoria
+      description: "Scan, sessão ou relatório onde o achado foi levantado, com data."
+      placeholder: "Scan de governança, 29/10/2026"
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmações
+      options:
+        - label: Este formulário não contém valor de segredo, token, senha ou dado pessoal
+          required: true
