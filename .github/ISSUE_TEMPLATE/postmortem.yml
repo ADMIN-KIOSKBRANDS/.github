@@ -1,0 +1,72 @@
+name: "\U0001F6A8 Postmortem"
+description: "Registrar incidente resolvido: impacto, linha do tempo, causa raiz e ações"
+title: "[POSTMORTEM] "
+labels: ["postmortem", "incident"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > Obrigatório para incidentes P0 e P1. Sem culpados: descreva sistemas e decisões, não pessoas.
+        > Nunca cole valor de segredo ou dado pessoal.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Sistema afetado
+      placeholder: "ADMIN-KIOSKBRANDS/nome-do-repositorio ou servidor"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumo
+      description: "O que aconteceu, em duas ou três frases."
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto
+      description: "Duração, usuários ou pedidos afetados, dados perdidos ou expostos."
+    validations:
+      required: true
+
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Linha do tempo
+      placeholder: |
+        - HH:MM — detecção
+        - HH:MM — mitigação
+        - HH:MM — resolução
+    validations:
+      required: true
+
+  - type: textarea
+    id: root_cause
+    attributes:
+      label: Causa raiz
+      description: "Mecanismo comprovado no código ou na configuração, com `arquivo:linha`."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actions
+    attributes:
+      label: Ações corretivas
+      description: "Cada ação vira issue com responsável."
+      placeholder: |
+        - [ ] #
+        - [ ] #
+    validations:
+      required: true
+
+  - type: textarea
+    id: lessons
+    attributes:
+      label: Lições aprendidas
+    validations:
+      required: true

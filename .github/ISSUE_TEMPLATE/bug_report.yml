@@ -1,0 +1,74 @@
+name: "\U0001F41B Bug"
+description: "Reportar um comportamento incorreto, com reprodução"
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > Barra lateral: Assignees (quem investiga), Labels (`bug` e `priority:*`), Milestone e issues relacionadas.
+        > Nunca cole valor de segredo, token, senha ou dado pessoal. Cite `caminho:linha`.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repositório ou sistema afetado
+      placeholder: "ADMIN-KIOSKBRANDS/nome-do-repositorio"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severidade
+      options:
+        - "P0 — Crítico: produção parada, perda de dado ou exposição"
+        - "P1 — Alto: funcionalidade principal quebrada, sem contorno"
+        - "P2 — Médio: há contorno"
+        - "P3 — Baixo: cosmético ou raro"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Ambiente
+      options:
+        - Produção
+        - Homologação
+        - Local
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: O que acontece
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento esperado
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidências
+      description: "Logs, IDs de registro, consultas, prints. Mascare dados sensíveis."
+      render: shell

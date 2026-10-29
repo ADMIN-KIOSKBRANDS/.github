@@ -1,0 +1,61 @@
+name: "\U0001F680 Funcionalidade"
+description: "Propor uma funcionalidade ou melhoria"
+title: "[FEAT] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > Barra lateral: Assignees, Labels (`enhancement` e `priority:*`), Milestone e issues relacionadas.
+        > Para demanda com especificação completa, use o formulário **Demanda com spec**.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repositório ou sistema
+      placeholder: "ADMIN-KIOSKBRANDS/nome-do-repositorio"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema ou necessidade
+      description: "Quem precisa, o que faz hoje e por que não basta."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução proposta
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceitação
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade sugerida
+      options:
+        - "Crítica"
+        - "Alta"
+        - "Média"
+        - "Baixa"
+    validations:
+      required: true
