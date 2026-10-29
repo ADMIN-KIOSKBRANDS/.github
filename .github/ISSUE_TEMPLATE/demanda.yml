@@ -1,0 +1,102 @@
+name: "\U0001F4CB Demanda com spec"
+description: "Demanda com especificação, invariantes e plano de testes, para a esteira Discovery → Spec → Plan → Execução"
+title: "DEMANDA-NNN: "
+labels: ["type:demanda"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > A Spec e o Plan só seguem com aprovação escrita do responsável. Documentos de processo (evidência, plano, handoff) ficam fora do Git; o que é durável vira ADR, runbook ou glossário.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repositório ou sistema
+      placeholder: "ADMIN-KIOSKBRANDS/nome-do-repositorio"
+    validations:
+      required: true
+
+  - type: input
+    id: domain
+    attributes:
+      label: Contexto de domínio
+      description: "Área de negócio a que a demanda pertence."
+      placeholder: "Logística, fiscal, leads, pagamentos, ERP..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade
+      options:
+        - "Crítica"
+        - "Alta"
+        - "Média"
+        - "Baixa"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumo
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto e causa raiz
+      description: "Situação atual com `arquivo:linha`, quem pediu e por quê."
+    validations:
+      required: true
+
+  - type: textarea
+    id: spec
+    attributes:
+      label: Especificação
+      description: "O que muda, contratos de entrada e saída, bordas (concorrência, timeout, nulos, reprocessamento)."
+    validations:
+      required: true
+
+  - type: textarea
+    id: invariants
+    attributes:
+      label: Invariantes negativos
+      description: "O que a solução nunca pode fazer. Cada item verificável por teste ou comando."
+      placeholder: |
+        - Nunca ...
+        - Nunca ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceitação
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: test_plan
+    attributes:
+      label: Plano de testes
+      description: "Comandos e cenários; o que falha antes e passa depois."
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Riscos e dependências
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Referências
+      description: "ADRs, runbooks, issues e links."

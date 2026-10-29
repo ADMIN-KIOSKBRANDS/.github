@@ -1,0 +1,91 @@
+name: "\U0001F527 Tarefa de infraestrutura"
+description: "Servidor, deploy, CI/CD, rede, certificado, backup ou monitoramento"
+title: "[INFRA] "
+labels: ["infra"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > Barra lateral: Assignees, Labels (`infra` e `priority:*`), Milestone e issues relacionadas.
+        > Toda mudança em servidor tem plano de rollback. Nunca cole credencial, IP interno sensível ou chave.
+
+  - type: input
+    id: target
+    attributes:
+      label: Servidor, serviço ou repositório
+      placeholder: "nome do servidor / nome.service / ADMIN-KIOSKBRANDS/nome"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tipo
+      options:
+        - Deploy ou release
+        - CI/CD
+        - Servidor e serviços (systemd, PM2, nginx)
+        - Rede e firewall
+        - Certificado
+        - Backup e restauração
+        - Monitoramento e alertas
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade
+      options:
+        - "P0 — Crítica"
+        - "P1 — Alta"
+        - "P2 — Média"
+        - "P3 — Baixa"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumo
+      description: "O que precisa mudar e por quê."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_state
+    attributes:
+      label: Estado atual verificado
+      description: "Comando de leitura executado e saída, antes de qualquer mudança."
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceitação
+      placeholder: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Plano de rollback
+      description: "Como voltar ao estado anterior e como confirmar que voltou."
+    validations:
+      required: true
+
+  - type: textarea
+    id: relationships
+    attributes:
+      label: Relações
+      placeholder: |
+        - Bloqueada por: #
+        - Bloqueia: #
+        - Relacionada: #

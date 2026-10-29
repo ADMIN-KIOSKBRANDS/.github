@@ -1,0 +1,52 @@
+name: "\U0001F9EA Mudança com lista de testes"
+description: "Funcionalidade ou correção com plano de testes obrigatório antes do código"
+title: "[TESTES] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > Os testes são escritos antes do código e falham primeiro (RED). A issue só fecha com a saída da suíte verde anexada na PR.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repositório
+      placeholder: "ADMIN-KIOSKBRANDS/nome-do-repositorio"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: O que precisa ser feito
+    validations:
+      required: true
+
+  - type: textarea
+    id: test_list
+    attributes:
+      label: Lista de testes
+      description: "Um item por comportamento: cenário, entrada, resultado esperado. Inclua casos de erro e de borda."
+      placeholder: |
+        - [ ] Dado ..., quando ..., então ...
+        - [ ] Erro: ...
+        - [ ] Borda: ...
+    validations:
+      required: true
+
+  - type: input
+    id: test_command
+    attributes:
+      label: Comando de teste
+      placeholder: "npm test / pytest -q"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceitação
+    validations:
+      required: true
